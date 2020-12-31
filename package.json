@@ -1,0 +1,24 @@
+{
+  "name": "@agrzes/yellow-2021-root",
+  "private": true,
+  "dependencies": {
+    "lerna": "^3.22.1"
+  },
+  "workspaces": {
+    "packages": [
+      "modules/**"
+    ]
+  },
+  "scripts": {
+    "build": "lerna run build",
+    "watch": "lerna run watch --stream --parallel",
+    "test": "lerna run test"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
