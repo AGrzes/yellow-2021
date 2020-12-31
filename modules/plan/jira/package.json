@@ -1,0 +1,44 @@
+{
+  "name": "@agrzes/yellow-2021-plan-jira",
+  "version": "1.0.0",
+  "description": "",
+  "main": "target",
+  "types": "types",
+  "scripts": {
+    "build": "rm -rf target types && tsc",
+    "watch": "tsc --watch --preserveWatchOutput",
+    "test": "nyc mocha test/**/*.{ts,tsx}"
+  },
+  "nyc": {
+    "all": true,
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "include": [
+      "src/**/*"
+    ],
+    "reporter": [
+      "html",
+      "text",
+      "lcov"
+    ],
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ]
+  },
+  "author": "Grzegorz Abramczyk <abramczykg@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "/package.json",
+    "/package-lock.json",
+    "/LICENSE",
+    "/src",
+    "/target",
+    "/types"
+  ]
+}
