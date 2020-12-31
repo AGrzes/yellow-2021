@@ -7,7 +7,9 @@
   "scripts": {
     "build": "rm -rf target types && tsc",
     "watch": "tsc --watch --preserveWatchOutput",
-    "test": "nyc mocha test/**/*.{ts,tsx}"
+    "test": "nyc mocha test/**/*.{ts,tsx}",
+    "lint": "eslint . --ext .ts",
+    "format": "eslint . --ext .ts --fix"
   },
   "nyc": {
     "all": true,

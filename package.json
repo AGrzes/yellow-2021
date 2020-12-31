@@ -12,9 +12,17 @@
   "scripts": {
     "build": "lerna run build",
     "watch": "lerna run watch --stream --parallel",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "compose:up": "cd local && docker-compose up -d",
+    "compose:clear-up": "cd local && docker-compose up -d -V",
+    "compose:down": "cd local && docker-compose down",
+    "compose:stop": "cd local && docker-compose stop",
+    "compose:start": "cd local && docker-compose start"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "eslint": "^7.16.0",
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
     "source-map-support": "^0.5.19",
