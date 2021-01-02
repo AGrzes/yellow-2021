@@ -62,13 +62,13 @@ export function mapFieldDefinitionToJSONSchema(input: FieldDefinition): JSONSche
 
 
 export class Schema {
-  constructor(private client: AxiosInstance) {}
+  constructor(private client: AxiosInstance, private map: (input: FieldDefinition) => JSONSchema7Definition ) {}
 
   public async fields(): Promise<JSONSchema7> {
     const fieldDefinitions:FieldDefinition[]  = (await this.client.get('/rest/api/2/field')).data
     return {
       type: 'object',
-      properties: _.mapValues(_.keyBy(fieldDefinitions,'id'),mapFieldDefinitionToJSONSchema)
+      properties: _.mapValues(_.keyBy(fieldDefinitions,'id'),this.map)
     }
   }
 }
@@ -79,5 +79,5 @@ const schema = new Schema(axios.create({
     username: process.env.JIRA_USERNAME,
     password: process.env.JIRA_PASSWORD
   }
-}))
+}),mapFieldDefinitionToJSONSchema)
 export default schema

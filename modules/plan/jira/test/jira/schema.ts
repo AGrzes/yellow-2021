@@ -54,6 +54,21 @@ describe('jira', function() {
         expect(mapped).to.have.property('format','date')
         expect(mapped).to.have.property('title','name')
       })
+      it('should map issuekey field', function() {
+        const mapped = mapFieldDefinitionToJSONSchema({
+          ...common,
+          id: 'issuekey'
+        })
+        expect(mapped).to.have.property('type','string')
+        expect(mapped).to.have.property('title','name')
+      })
+      it('should map thumbnail field', function() {
+        const mapped = mapFieldDefinitionToJSONSchema({
+          ...common,
+          id: 'thumbnail'
+        })
+        expect(mapped).to.be.false
+      })
     })
   })
 })
