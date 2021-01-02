@@ -45,6 +45,7 @@
   ],
   "dependencies": {
     "@terminusdb/terminusdb-client": "^4.1.0",
+    "ajv": "^7.0.2",
     "axios": "^0.21.1"
   }
 }
