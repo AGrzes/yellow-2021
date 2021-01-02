@@ -4,6 +4,7 @@ describe('jira', function() {
   describe('schema', function() {
     describe('mapFieldDefinitionToJSONSchema', function() {
       const common = {
+        name: 'name',
         clauseNames: [],
         custom: false,
         id: 'id',
@@ -13,13 +14,44 @@ describe('jira', function() {
       }
       it('should map number field', function() {
         const mapped = mapFieldDefinitionToJSONSchema({
-          name: 'name',
           schema: {
             type: 'number'
           },
           ...common
         })
         expect(mapped).to.have.property('type','number')
+        expect(mapped).to.have.property('title','name')
+      })
+      it('should map string field', function() {
+        const mapped = mapFieldDefinitionToJSONSchema({
+          schema: {
+            type: 'string'
+          },
+          ...common
+        })
+        expect(mapped).to.have.property('type','string')
+        expect(mapped).to.have.property('title','name')
+      })
+      it('should map datetime field', function() {
+        const mapped = mapFieldDefinitionToJSONSchema({
+          schema: {
+            type: 'datetime'
+          },
+          ...common
+        })
+        expect(mapped).to.have.property('type','string')
+        expect(mapped).to.have.property('format','date-time')
+        expect(mapped).to.have.property('title','name')
+      })
+      it('should map date field', function() {
+        const mapped = mapFieldDefinitionToJSONSchema({
+          schema: {
+            type: 'date'
+          },
+          ...common
+        })
+        expect(mapped).to.have.property('type','string')
+        expect(mapped).to.have.property('format','date')
         expect(mapped).to.have.property('title','name')
       })
     })
