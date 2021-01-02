@@ -75,17 +75,20 @@ describe('jira', function() {
         })
         expect(mapped).to.be.false
       })
+      it('should map string array field', function() {
+        const mapped = mapFieldDefinitionToJSONSchema({
+          schema: {
+            type: 'array',
+            items: 'string'
+          },
+          ...common
+        })
+        expect(mapped).to.have.property('type','array')
+        expect(mapped).to.have.nested.property('items.type','string')
+        expect(mapped).to.have.property('title','name')
+      })
     })
     describe('Schema', function() {
-      const common = {
-        name: 'name',
-        clauseNames: [],
-        custom: false,
-        id: 'id',
-        navigable: true,
-        orderable: true,
-        searchable: true,
-      }
       it('should retrieve fields',async function() {
         const client = {
           get: sinon.stub().resolves({data:[]})

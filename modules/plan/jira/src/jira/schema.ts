@@ -47,6 +47,16 @@ export function mapFieldDefinitionToJSONSchema(input: FieldDefinition): JSONSche
           format: 'date',
           ...shared
         }
+        case 'array': 
+          switch (input.schema.items) {
+            case 'string': return {
+              type: 'array',
+              items: {
+                type: 'string'
+              },
+              ...shared
+            }
+          }
       }
     }
   } else if (input.id === 'thumbnail') {
