@@ -1,4 +1,4 @@
-import { Issue } from './model'
+import { Issue } from '../model'
 import axios, {AxiosInstance } from 'axios'
 
 const batchSize = process.env.JIRA_BATCH_SIZE ? Number.parseInt(process.env.JIRA_BATCH_SIZE) : 500
