@@ -22,6 +22,33 @@ export interface FieldSchema {
   customId?: number
 }
 
+export interface Issuetype {
+  self:        string;
+  id:          string;
+  description: string;
+  iconUrl:     string;
+  name:        string;
+  subtask:     boolean;
+  avatarId:    number;
+}
+
+const STRING: JSONSchema7 = {type: 'string'}
+const BOOLEAN: JSONSchema7 = {type: 'boolean'}
+const NUMBER: JSONSchema7 = {type: 'number'}
+
+export const ISSUETYPE: JSONSchema7 = {
+  type: 'object',
+  properties: {
+    self: STRING,
+    id: STRING,
+    description: STRING,
+    iconUrl: STRING,
+    name: STRING,
+    subtask: BOOLEAN,
+    avatarId: NUMBER
+  }
+}
+
 export function mapFieldDefinitionToJSONSchema(input: FieldDefinition): JSONSchema7Definition {
   const shared: Partial<JSONSchema7Definition> = {
     title: input.name
@@ -57,6 +84,11 @@ export function mapFieldDefinitionToJSONSchema(input: FieldDefinition): JSONSche
               ...shared
             }
           }
+          break
+        case 'issuetype': return {
+          ...ISSUETYPE,
+          ...shared
+        }
       }
     }
   } else if (input.id === 'thumbnail') {

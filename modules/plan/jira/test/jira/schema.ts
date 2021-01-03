@@ -1,4 +1,4 @@
-import {mapFieldDefinitionToJSONSchema, Schema} from '../../src/jira/schema'
+import {ISSUETYPE, mapFieldDefinitionToJSONSchema, Schema} from '../../src/jira/schema'
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 import sinon from 'sinon'
@@ -59,6 +59,15 @@ describe('jira', function() {
         expect(mapped).to.have.property('type','string')
         expect(mapped).to.have.property('format','date')
         expect(mapped).to.have.property('title','name')
+      })
+      it('should map issuetype field', function() {
+        const mapped = mapFieldDefinitionToJSONSchema({
+          schema: {
+            type: 'issuetype'
+          },
+          ...common
+        })
+        expect(mapped).to.be.deep.equal({...ISSUETYPE, title: 'name'})
       })
       it('should map issuekey field', function() {
         const mapped = mapFieldDefinitionToJSONSchema({
